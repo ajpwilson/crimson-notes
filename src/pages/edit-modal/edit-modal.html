@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Edit Note: {{ note.title }}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
+    <ion-input name="title" type="text" placeholder="Title" ngModel>{{ note.title }}</ion-input>
+    <ion-textarea name="text" type="text" placeholder="Text" ngModel>{{ note.text }}</ion-textarea>
+
+    <ion-footer>
+      <ion-toolbar>
+        <button ion-button block type="submit">Update Note</button>
+      </ion-toolbar>
+    </ion-footer>
+
+  </form>
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ note.title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  {{ note.text }}
+
+  <ion-footer>
+    <ion-toolbar>
+      <button ion-button block (click)="openModal(note)">Edit Note</button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

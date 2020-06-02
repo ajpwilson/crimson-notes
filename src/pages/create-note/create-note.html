@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Create a Note</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<!--  I want to update this form so that I can validate it.-->
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+    <ion-input class="input" name="title" type="text" placeholder="Title" [(ngModel)]="f.value.title" required></ion-input>
+    <ion-textarea class="input" name="text" type="text" placeholder="Text" [(ngModel)]="f.value.text" required></ion-textarea>
+
+    <ion-footer>
+      <ion-toolbar>
+        <button ion-button block [disabled]="!f.valid" type="submit">Save Note</button>
+      </ion-toolbar>
+    </ion-footer>
+
+  </form>
+</ion-content>
