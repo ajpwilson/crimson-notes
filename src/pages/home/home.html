@@ -8,7 +8,7 @@
   <ion-list>
     <!-- ion-item-sliding is causing an error. -- ERROR: Ignored attempt to cancel a touchmove event. -->
     <ion-item-sliding class="sliding" *ngFor="let note of notes">
-      <ion-item color="light" (click)="viewNote(note)">
+      <ion-item (click)="viewNote(note)">
         {{ note.title }}
       </ion-item>
       <ion-item-options side="right">
