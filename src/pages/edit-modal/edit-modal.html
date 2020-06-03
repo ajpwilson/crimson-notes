@@ -8,9 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
-    <ion-input class="input" name="title" type="text" placeholder="Title" [(ngModel)]="f.value.title" required></ion-input>
-    <ion-textarea class="input" name="text" type="text" placeholder="Text" [(ngModel)]="f.value.text" required></ion-textarea>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate> <!-- Unable to pre-populate the input field with values from existing note. -->
+    <ion-input class="input" name="title" type="text" placeholder="{{ note.title }}" [(ngModel)]="f.value.title" required></ion-input>
+    <ion-input class="input" name="tags" type="text" placeholder="{{ note.tags }}" [(ngModel)]="f.value.tag" required></ion-input>
+    <ion-textarea class="input" name="text" type="text" placeholder="{{ note.text }}" [(ngModel)]="f.value.text" required></ion-textarea>
 
     <ion-footer>
       <ion-toolbar>

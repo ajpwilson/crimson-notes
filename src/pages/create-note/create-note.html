@@ -8,6 +8,7 @@
 <!--  I want to update this form so that I can validate it.-->
   <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
     <ion-input class="input" name="title" type="text" placeholder="Title" [(ngModel)]="f.value.title" required></ion-input>
+    <ion-input class="input" name="tags" type="text" placeholder="Tag, Tag, Tag" [(ngModel)]="f.value.tag" required></ion-input>
     <ion-textarea class="input" name="text" type="text" placeholder="Text" [(ngModel)]="f.value.text" required></ion-textarea>
 
     <ion-footer>
