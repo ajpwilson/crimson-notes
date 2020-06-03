@@ -5,13 +5,17 @@ import { Note } from '../../interfaces/interfaces';
 export class NotesProvider {
 
   private notes: Note[] = [];
-  private updatedNotes: Note[] = [];
 
   constructor() {}
 
   saveNote(note: Note) {
     let date = new Date();
     note.id = date.getTime(); // not the best solution
+
+    let tags = (<string>note.tags).split(','); // casting the value I want to split
+    tags = tags.filter((tag: string) => { return tag.trim() != ''})
+    note.tags = tags;
+
     this.notes.push(note);
   }
 

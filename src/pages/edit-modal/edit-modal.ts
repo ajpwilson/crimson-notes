@@ -23,8 +23,8 @@ export class EditModalPage {
     public navParams: NavParams,
     private view: ViewController,
     private NotesProvider: NotesProvider) {
-      this.note = this.navParams.data; // why does this need to be data not note? get('')
-      this.navParams.data.id
+      this.note = this.navParams.data; // why does this need to be data not note? -- research get('')
+      this.navParams.data.id // do I still need this?
   }
 
   closeModal() {
@@ -33,7 +33,13 @@ export class EditModalPage {
 
   onSubmit(value: Note) {
     const updatedNote = value;
+
     updatedNote.id = this.navParams.data.id;
+
+    let tags = (<string>updatedNote.tags).split(','); // casting the value I want to split
+    tags = tags.filter((tag: string) => { return tag.trim() != ''})
+    updatedNote.tags = tags;
+
     this.NotesProvider.updateNote(updatedNote);
     this.view.dismiss();
   }
