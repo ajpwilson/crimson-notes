@@ -23,8 +23,7 @@ export class EditModalPage {
     public navParams: NavParams,
     private view: ViewController,
     private NotesProvider: NotesProvider) {
-      this.note = this.navParams.data; // why does this need to be data not note? -- research get('')
-      this.navParams.data.id // do I still need this?
+      this.note = this.navParams.data; // tried with get(), got data but couldn't access id.
   }
 
   closeModal() {
@@ -36,7 +35,7 @@ export class EditModalPage {
 
     updatedNote.id = this.navParams.data.id;
 
-    let tags = (<string>updatedNote.tags).split(','); // casting the value I want to split
+    let tags = (<string>updatedNote.tags).split(','); // type assertion
     tags = tags.filter((tag: string) => { return tag.trim() != ''})
     updatedNote.tags = tags;
 
