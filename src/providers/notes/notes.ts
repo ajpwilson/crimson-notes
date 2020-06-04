@@ -12,7 +12,7 @@ export class NotesProvider {
     let date = new Date();
     note.id = date.getTime(); // not the best solution
 
-    let tags = (<string>note.tags).split(','); // casting the value I want to split
+    let tags = (<string>note.tags).split(','); // type assertion
     tags = tags.filter((tag: string) => { return tag.trim() != ''})
     note.tags = tags;
 
