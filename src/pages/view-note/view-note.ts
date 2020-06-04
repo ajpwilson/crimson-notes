@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {ModalController, NavController, NavParams} from 'ionic-angular';
-import {Note} from "../../interfaces/interfaces";
-import {EditModalPage} from "../edit-modal/edit-modal";
+import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { Note } from "../../interfaces/interfaces";
+import { EditModalPage } from "../edit-modal/edit-modal";
 
 @Component({
   selector: 'page-view-note',

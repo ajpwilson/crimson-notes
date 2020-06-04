@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { CreateNotePage } from '../create-note/create-note';
 import { NotesProvider } from "../../providers/notes/notes";
-import {Note} from "../../interfaces/interfaces";
-import {ViewNotePage} from "../view-note/view-note";
-import {EditModalPage} from "../edit-modal/edit-modal";
+import { Note } from "../../interfaces/interfaces";
+import { ViewNotePage } from "../view-note/view-note";
+import { EditModalPage } from "../edit-modal/edit-modal";
 
 @Component({
   selector: 'page-home',
@@ -12,7 +12,7 @@ import {EditModalPage} from "../edit-modal/edit-modal";
 })
 export class HomePage {
 
-  private notes: Note[] = [];
+  notes: Promise<Note[]>; // why does this need to be a promise?
 
   constructor(
     public navCtrl: NavController,
@@ -42,8 +42,8 @@ export class HomePage {
   }
 
   deleteNote(note : Note) {
-    let i: number = this.notes.indexOf(note);
-    this.notes.splice(i, 1);
+    this.NotesProvider.deleteNote(note);
+    this.notes = this.NotesProvider.providerGetNotes(); // having to click the button twice...
   }
 }
 
