@@ -12,7 +12,7 @@ import { EditModalPage } from "../edit-modal/edit-modal";
 })
 export class HomePage {
 
-  notes: Promise<Note[]>; // why does this need to be a promise?
+  notes: Promise<Note[]>; // The async method returns this promise to supply the value in the future.
 
   constructor(
     public navCtrl: NavController,
