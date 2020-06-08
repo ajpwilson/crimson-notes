@@ -11,6 +11,7 @@ import { ViewNotePage } from '../pages/view-note/view-note';
 import { NotesProvider } from '../providers/notes/notes';
 import { EditModalPage } from "../pages/edit-modal/edit-modal";
 import { IonicStorageModule } from "@ionic/storage";
+import { NoteComponent } from "../components/note/note";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { IonicStorageModule } from "@ionic/storage";
     HomePage,
     CreateNotePage,
     ViewNotePage,
-    EditModalPage
+    EditModalPage,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
