@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {ModalController, NavController, NavParams} from 'ionic-angular';
-import {Note} from "../../interfaces/interfaces";
-import {EditModalPage} from "../edit-modal/edit-modal";
+import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { Note } from "../../interfaces/interfaces";
+import { EditModalPage } from "../edit-modal/edit-modal";
 
 @Component({
   selector: 'page-view-note',
@@ -9,7 +9,7 @@ import {EditModalPage} from "../edit-modal/edit-modal";
 })
 export class ViewNotePage {
 
-  public note: object;
+  note: object;
 
   constructor(
     public navCtrl: NavController,
@@ -24,7 +24,7 @@ export class ViewNotePage {
     editNoteModal.present();
 
     editNoteModal.onDidDismiss(() => {
-      this.navCtrl.popToRoot() // possibly rethink this functionality.
+      this.navCtrl.popToRoot() // possibly rethink this functionality, look into loading component.
     })
   }
 }

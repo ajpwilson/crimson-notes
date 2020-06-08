@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
-import {Note} from "../../interfaces/interfaces";
-import {NotesProvider} from "../../providers/notes/notes";
-
-/**
- * Generated class for the EditModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Note } from "../../interfaces/interfaces";
+import { NotesProvider } from "../../providers/notes/notes";
 
 @Component({
   selector: 'page-edit-modal',

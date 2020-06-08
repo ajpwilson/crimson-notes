@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { CreateNotePage } from '../create-note/create-note';
 import { NotesProvider } from "../../providers/notes/notes";
-import {Note} from "../../interfaces/interfaces";
-import {ViewNotePage} from "../view-note/view-note";
-import {EditModalPage} from "../edit-modal/edit-modal";
+import { Note } from "../../interfaces/interfaces";
+import { ViewNotePage } from "../view-note/view-note";
+import { EditModalPage } from "../edit-modal/edit-modal";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: 'page-home',
@@ -12,15 +13,21 @@ import {EditModalPage} from "../edit-modal/edit-modal";
 })
 export class HomePage {
 
-  private notes: Note[] = [];
+  notes: Note[];
 
   constructor(
     public navCtrl: NavController,
     private NotesProvider: NotesProvider,
-    private modal: ModalController) {}
+    private modal: ModalController,
+    public storage: Storage) {}
 
   ionViewWillEnter() {
-    this.notes = this.NotesProvider.providerGetNotes();
+    /* Remember providerGetNotes() is a promise, so depending on it's state .then is executed,
+    which is executing an arrow function (anonymous function expression), which takes notes as a parameter.
+    An arrow function retains the scope of the caller (class HomePage) inside the function, therefore .bind is not needed. */
+    this.NotesProvider.providerGetNotes().then((notes: Note[]) => {
+      this.notes = notes;
+    });
   }
 
   createNote() {
@@ -35,15 +42,10 @@ export class HomePage {
     const editNoteModal = this.modal.create(EditModalPage, note); // {data: note} -- reverted see edit-modal.ts
 
     editNoteModal.present();
-
-    editNoteModal.onDidDismiss(() => {
-      this.notes = this.NotesProvider.providerGetNotes();
-    })
   }
 
   deleteNote(note : Note) {
-    let i: number = this.notes.indexOf(note);
-    this.notes.splice(i, 1);
+    this.NotesProvider.deleteNote(note);
   }
 }
 

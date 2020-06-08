@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../../interfaces/interfaces';
+import { Storage } from "@ionic/storage";
 
 @Injectable()
 export class NotesProvider {
 
-  private notes: Note[] = [];
+  notes: Note[] = [];
 
-  constructor() {}
+  constructor(public storage: Storage) {}
 
   saveNote(note: Note) {
     let date = new Date();
@@ -17,6 +18,7 @@ export class NotesProvider {
     note.tags = tags;
 
     this.notes.push(note);
+    this.storage.set('notesStorage', this.notes) // storing array of notes as a key value pair.
   }
 
   updateNote(updatedNote: Note){
@@ -29,9 +31,22 @@ export class NotesProvider {
 
     const updatedNotes = this.notes;
     this.notes.concat(updatedNotes);
+    this.storage.set('notesStorage', this.notes)
+  }
+
+  deleteNote(note: Note) {
+    let i: number = this.notes.indexOf(note);
+    this.notes.splice(i, 1);
+    this.storage.set('notesStorage', this.notes);
   }
 
   providerGetNotes() {
-    return [...this.notes]; // cloning the array so that the main array is immutable.
+    /* A promise is an object that may produce a single value some time in the future.
+    Three possible states of a promise: fulfilled, rejected, or pending.
+    A promise is settled if it's not pending, once settled it can not be resettled. */
+    return this.storage.get('notesStorage').then((notesStorage) => { // .get returns a promise, passing a callback function to .then
+      this.notes = notesStorage;
+      return this.notes;
+    })
   }
 }
