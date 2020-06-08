@@ -7,7 +7,7 @@
 <ion-content padding>
   <ion-list>
     <!-- ion-item-sliding is causing an error. -- ERROR: Ignored attempt to cancel a touchmove event. -->
-    <ion-item-sliding class="sliding" *ngFor="let note of notes | async"> <!-- async pipe subscribes to a Promise and returns the latest value emitted/changed -->
+    <ion-item-sliding class="sliding" *ngFor="let note of notes">
       <ion-item (click)="viewNote(note)">
         <h2>{{ note.title }}</h2>
         <div class="tags">
