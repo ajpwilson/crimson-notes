@@ -6,8 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <!-- ion-item-sliding is causing an error. -- ERROR: Ignored attempt to cancel a touchmove event. -->
-    <note *ngFor="let note of notes "[note]="note" (viewNote)="viewNote($event)" (deleteNote)="deleteNote($event)" (editNote)="openModal($event)"></note>
+    <note-item *ngFor="let note of notes" [note]="note" (viewNote)="viewNote($event)" (deleteNote)="deleteNote($event)" (editNote)="openModal($event)"></note-item>
   </ion-list>
 
   <ion-footer>

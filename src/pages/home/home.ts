@@ -35,11 +35,11 @@ export class HomePage {
   }
 
   viewNote(note: Note) {
-    this.navCtrl.push(ViewNotePage, note);
+    this.navCtrl.push(ViewNotePage, {data: note});
   }
 
   openModal(note: Note) {
-    const editNoteModal = this.modal.create(EditModalPage, note); // {data: note} -- reverted see edit-modal.ts
+    const editNoteModal = this.modal.create(EditModalPage, {data: note});
 
     editNoteModal.present();
   }

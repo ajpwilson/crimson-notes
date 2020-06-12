@@ -15,16 +15,16 @@ export class ViewNotePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private modal: ModalController) {
-      this.note = this.navParams.data;
+      this.note = this.navParams.get('data')
   }
 
   openModal(note: Note) {
-    const editNoteModal = this.modal.create(EditModalPage, note); // {data: note} -- reverted see edit-modal.ts
+    const editNoteModal = this.modal.create(EditModalPage, {data: note});
 
     editNoteModal.present();
 
     editNoteModal.onDidDismiss(() => {
-      this.navCtrl.popToRoot() // possibly rethink this functionality, look into loading component.
+      this.navCtrl.popToRoot()
     })
   }
 }
