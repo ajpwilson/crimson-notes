@@ -1,0 +1,17 @@
+<ion-item-sliding class="sliding" (click)="viewNotes(note)">
+  <ion-item>
+    <h2>{{ note.title }}</h2>
+    <div class="tags">
+      <div class="tag" *ngFor="let tag of note.tags">{{ tag }}</div>
+    </div>
+
+  </ion-item>
+  <ion-item-options side="right">
+    <button ion-button icon-only color="dark" (click)="openModals(note)">
+      <ion-icon name="create"></ion-icon>
+    </button>
+    <button ion-button icon-only color="danger" (click)="deleteNotes(note)">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </ion-item-options>
+</ion-item-sliding>
