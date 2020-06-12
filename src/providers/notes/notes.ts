@@ -10,13 +10,6 @@ export class NotesProvider {
   constructor(public storage: Storage) {}
 
   saveNote(note: Note) {
-    let date = new Date();
-    note.id = date.getTime(); // not the best solution
-
-    let tags = (<string>note.tags).split(','); // type assertion
-    tags = tags.filter((tag: string) => { return tag.trim() != ''})
-    note.tags = tags;
-
     this.notes.push(note);
     this.storage.set('notesStorage', this.notes) // storing array of notes as a key value pair.
   }
@@ -45,7 +38,7 @@ export class NotesProvider {
     Three possible states of a promise: fulfilled, rejected, or pending.
     A promise is settled if it's not pending, once settled it can not be resettled. */
     return this.storage.get('notesStorage').then((notesStorage) => { // .get returns a promise, passing a callback function to .then
-      this.notes = notesStorage;
+      this.notes = notesStorage || [];
       return this.notes;
     })
   }

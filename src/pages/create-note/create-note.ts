@@ -16,7 +16,7 @@ export class CreateNotePage {
 
   onSubmit(value: Note) {
     const note = value;
-    this.NotesProvider.saveNote(note);
+    // this.NotesProvider.saveNote(note);
     this.navCtrl.popToRoot()
   }
 }

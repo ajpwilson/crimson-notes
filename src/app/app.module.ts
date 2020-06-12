@@ -11,7 +11,7 @@ import { ViewNotePage } from '../pages/view-note/view-note';
 import { NotesProvider } from '../providers/notes/notes';
 import { EditModalPage } from "../pages/edit-modal/edit-modal";
 import { IonicStorageModule } from "@ionic/storage";
-import {ComponentsModule} from "../components/components.module";
+import { ComponentsModule } from "../components/components.module";
 
 
 @NgModule({

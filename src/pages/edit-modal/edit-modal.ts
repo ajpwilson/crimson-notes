@@ -34,15 +34,31 @@ export class EditModalPage {
   }
 
   onSubmit(value: Note) {
-    const updatedNote = value;
 
-    updatedNote.id = this.note.id;
+    if (this.note) {
+      const updatedNote = value;
+      updatedNote.id = this.note.id;
 
-    let tags = (<string>updatedNote.tags).split(',');
-    tags = tags.filter((tag: string) => { return tag.trim() != ''})
-    updatedNote.tags = tags;
+      let tags = (<string>updatedNote.tags).split(',');
+      tags = tags.filter((tag: string) => { return tag.trim() != ''})
+      updatedNote.tags = tags;
 
-    this.NotesProvider.updateNote(updatedNote);
+      this.NotesProvider.updateNote(updatedNote);
+
+    } else {
+
+      const note = value;
+      let date = new Date();
+      note.id = date.getTime();
+
+      let tags = (<string>note.tags).split(','); // type assertion
+      tags = tags.filter((tag: string) => { return tag.trim() != ''})
+      note.tags = tags;
+
+      this.NotesProvider.saveNote(note);
+    }
+
+
     this.view.dismiss();
   }
 

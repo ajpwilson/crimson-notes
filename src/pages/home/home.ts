@@ -31,7 +31,10 @@ export class HomePage {
   }
 
   createNote() {
-    this.navCtrl.push(CreateNotePage);
+    //this.navCtrl.push(CreateNotePage);
+    const editNoteModal = this.modal.create(EditModalPage);
+
+    editNoteModal.present();
   }
 
   viewNote(note: Note) {
