@@ -1,6 +1,6 @@
 export interface Note {
   title: string
   text: string
-  tags: string | string[]
+  tags: string[]
   id: number
 }

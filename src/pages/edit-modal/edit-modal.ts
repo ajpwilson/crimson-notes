@@ -24,7 +24,7 @@ export class EditModalPage {
     // console.log('ViewDidEnter:', this.createForm);
     if (this.note) {
       this.createForm.controls.title.setValue(this.note.title)
-      this.createForm.controls.tags.setValue(this.note.tags)
+      this.createForm.controls.tags.setValue(this.note.tags.join(','))
       this.createForm.controls.text.setValue(this.note.text)
     }
   }
@@ -33,21 +33,17 @@ export class EditModalPage {
     this.view.dismiss();
   }
 
-  onSubmit(value: Note) {
+  onSubmit(value: FormNote) {
 
     if (this.note) {
-      const updatedNote = value;
-      updatedNote.id = this.note.id;
 
-      // ERROR TypeError: updatedNote.tags.split is not a function
-      // This was happening when the note was being updated without updating the tags field.
-      if(typeof updatedNote.tags === 'string') { // works with this line.
-        let tags = (<string>updatedNote.tags).split(',');
-        tags = tags.filter((tag: string) => {
-          return tag.trim() != ''
-        })
-        updatedNote.tags = tags;
-      }
+      const updatedNote: Note = {
+        title: value.title,
+        text: value.text,
+        tags: (value.tags).split(',').map((tag: string) => { return tag.trim() })
+          .filter((tag: string) => { return tag != ''}),
+        id: this.note.id
+      };
 
       this.NotesProvider.updateNote(updatedNote);
 
@@ -70,4 +66,11 @@ export class EditModalPage {
     this.view.dismiss();
   }
 
+}
+
+interface FormNote {
+  title: string
+  id: number
+  tags: string
+  text: string
 }
