@@ -21,7 +21,7 @@ export class EditModalPage {
   }
 
   ionViewDidEnter() {
-    console.log('ViewDidEnter:', this.createForm);
+    // console.log('ViewDidEnter:', this.createForm);
     if (this.note) {
       this.createForm.controls.title.setValue(this.note.title)
       this.createForm.controls.tags.setValue(this.note.tags)
@@ -39,9 +39,15 @@ export class EditModalPage {
       const updatedNote = value;
       updatedNote.id = this.note.id;
 
-      let tags = (<string>updatedNote.tags).split(',');
-      tags = tags.filter((tag: string) => { return tag.trim() != ''})
-      updatedNote.tags = tags;
+      // ERROR TypeError: updatedNote.tags.split is not a function
+      // This was happening when the note was being updated without updating the tags field.
+      if(typeof updatedNote.tags === 'string') { // works with this line.
+        let tags = (<string>updatedNote.tags).split(',');
+        tags = tags.filter((tag: string) => {
+          return tag.trim() != ''
+        })
+        updatedNote.tags = tags;
+      }
 
       this.NotesProvider.updateNote(updatedNote);
 
@@ -52,7 +58,9 @@ export class EditModalPage {
       note.id = date.getTime();
 
       let tags = (<string>note.tags).split(','); // type assertion
-      tags = tags.filter((tag: string) => { return tag.trim() != ''})
+      tags = tags.filter((tag: string) => {
+        return tag.trim();
+      })
       note.tags = tags;
 
       this.NotesProvider.saveNote(note);
