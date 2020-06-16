@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>Edit Note: {{ note.title }}</ion-title>
+    <ion-title>Edit Note</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -15,7 +15,7 @@
 
     <ion-footer>
       <ion-toolbar>
-        <button ion-button block class="rainbow" [disabled]="!f.valid" type="submit">Update Note</button>
+        <button ion-button block class="rainbow" [disabled]="!f.valid" type="submit">Save Note</button>
       </ion-toolbar>
     </ion-footer>
 

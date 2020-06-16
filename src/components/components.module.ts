@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { NoteComponent } from './note-item/note-item';
 import {IonicModule} from "ionic-angular";
-import { FormComponent } from './form-component/form-component';
 @NgModule({
 	declarations: [
-	  NoteComponent,
-    FormComponent
+	  NoteComponent
   ],
 	imports: [
 	  IonicModule
   ],
 	exports: [
-	  NoteComponent,
-    FormComponent
+	  NoteComponent
   ]
 })
 export class ComponentsModule {}

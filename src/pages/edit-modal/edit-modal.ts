@@ -21,10 +21,10 @@ export class EditModalPage {
   }
 
   ionViewDidEnter() {
-    console.log('ViewDidEnter:', this.createForm);
+    // console.log('ViewDidEnter:', this.createForm);
     if (this.note) {
       this.createForm.controls.title.setValue(this.note.title)
-      this.createForm.controls.tags.setValue(this.note.tags)
+      this.createForm.controls.tags.setValue(this.note.tags.join(','))
       this.createForm.controls.text.setValue(this.note.text)
     }
   }
@@ -33,17 +33,43 @@ export class EditModalPage {
     this.view.dismiss();
   }
 
-  onSubmit(value: Note) {
-    const updatedNote = value;
+  onSubmit(value: FormNote) {
 
-    updatedNote.id = this.note.id;
+    if (this.note) {
 
-    let tags = (<string>updatedNote.tags).split(',');
-    tags = tags.filter((tag: string) => { return tag.trim() != ''})
-    updatedNote.tags = tags;
+      const updatedNote: Note = {
+        title: value.title,
+        text: value.text,
+        tags: (value.tags).split(',').map((tag: string) => { return tag.trim() })
+          .filter((tag: string) => { return tag != ''}),
+        id: this.note.id
+      };
 
-    this.NotesProvider.updateNote(updatedNote);
+      this.NotesProvider.updateNote(updatedNote);
+
+    } else {
+
+      let date = new Date();
+
+      const note: Note = {
+        title: value.title,
+        text: value.text,
+        tags: (value.tags).split(',').map((tag: string) => { return tag.trim() })
+          .filter((tag: string) => { return tag != ''}),
+        id: date.getTime()
+      };
+
+      this.NotesProvider.saveNote(note);
+    }
+
     this.view.dismiss();
   }
 
+}
+
+interface FormNote {
+  title: string
+  id: number
+  tags: string
+  text: string
 }
