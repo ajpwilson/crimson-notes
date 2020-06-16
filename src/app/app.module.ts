@@ -6,7 +6,6 @@ import { HomePage } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CreateNotePage } from "../pages/create-note/create-note";
 import { ViewNotePage } from '../pages/view-note/view-note';
 import { NotesProvider } from '../providers/notes/notes';
 import { EditModalPage } from "../pages/edit-modal/edit-modal";
@@ -18,7 +17,6 @@ import { ComponentsModule } from "../components/components.module";
   declarations: [
     MyApp,
     HomePage,
-    CreateNotePage,
     ViewNotePage,
     EditModalPage
   ],
@@ -32,7 +30,6 @@ import { ComponentsModule } from "../components/components.module";
   entryComponents: [
     MyApp,
     HomePage,
-    CreateNotePage,
     ViewNotePage,
     EditModalPage
 

@@ -49,19 +49,18 @@ export class EditModalPage {
 
     } else {
 
-      const note = value;
       let date = new Date();
-      note.id = date.getTime();
 
-      let tags = (<string>note.tags).split(','); // type assertion
-      tags = tags.filter((tag: string) => {
-        return tag.trim();
-      })
-      note.tags = tags;
+      const note: Note = {
+        title: value.title,
+        text: value.text,
+        tags: (value.tags).split(',').map((tag: string) => { return tag.trim() })
+          .filter((tag: string) => { return tag != ''}),
+        id: date.getTime()
+      };
 
       this.NotesProvider.saveNote(note);
     }
-
 
     this.view.dismiss();
   }
