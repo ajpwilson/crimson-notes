@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { CreateNotePage } from '../create-note/create-note';
 import { NotesProvider } from "../../providers/notes/notes";
 import { Note } from "../../interfaces/interfaces";
 import { ViewNotePage } from "../view-note/view-note";
@@ -31,7 +30,6 @@ export class HomePage {
   }
 
   createNote() {
-    //this.navCtrl.push(CreateNotePage);
     const editNoteModal = this.modal.create(EditModalPage);
 
     editNoteModal.present();
