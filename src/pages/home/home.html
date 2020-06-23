@@ -9,9 +9,21 @@
     <note-item *ngFor="let note of notes" [note]="note" (viewNote)="viewNote($event)" (deleteNote)="deleteNote($event)" (editNote)="openModal($event)"></note-item>
   </ion-list>
 
+  <div>
+    <ion-item class="sliding">
+      <ion-label>Show filterable tags</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="filterToggle"></ion-toggle>
+    </ion-item>
+
+    <div class="tags" *ngIf="filterToggle">
+      <note-filter *ngFor="let tag of filteredTags" [filteredTags]="tag" (filterTag)="filterTag($event)"></note-filter>
+      <button class="tag clear-tags" (click)="clearFilter()">Clear Filters</button>
+    </div>
+  </div>
+
   <ion-footer>
     <ion-toolbar>
-      <button ion-button block class="rainbow" (click)="createNote()">Create Note</button>
+      <button ion-button block class="rainbow" (click)="openModal()">Create Note</button>
     </ion-toolbar>
   </ion-footer>
 </ion-content>

@@ -36,40 +36,26 @@ export class EditModalPage {
 
   onSubmit(value: FormNote) {
 
-    if (this.note) {
+  let date = new Date().getTime();
 
-      const updatedNote: Note = {
-        title: value.title,
-        text: value.text,
-        /* .string() splits the string into an array of strings. .map() calls the provided callback function once for each
-        element in the array, constructing a new array. So here each tag is being trimmed of whitespace and added to the new array.
-        The .filter() calls the provided callback function, again once for each element in the array, and returns a value that equals true,
-        in this case, if the tag is not an empty string, it returns true. */
-        tags: (value.tags).split(',').map((tag: string) => { return tag.trim() })
-          .filter((tag: string) => { return tag != ''}),
-        id: this.note.id
-      };
+  const note: Note = {
+    title: value.title,
+    text: value.text,
+    /* .string() splits the string into an array of strings. .map() calls the provided callback function once for each
+    element in the array, constructing a new array. Using .trim() here each tag is being trimmed of whitespace and added to the new array.
+    The .filter() calls the provided callback function, again once for each element in the array, and returns a value that equals true,
+    in this case, if the tag is not an empty string, it returns true. */
+    tags: (value.tags).split(',').map((tag: string) => { return tag.trim() })
+      .filter((tag: string) => { return tag != ''}),
+    id: this.note === undefined ? date : this.note.id // creating a note means that this.note is undefined as there is no data being passed in.
+  };
 
-      this.NotesProvider.updateNote(updatedNote);
-
-    } else {
-
-      let date = new Date();
-
-      const note: Note = {
-        title: value.title,
-        text: value.text,
-        tags: (value.tags).split(',').map((tag: string) => { return tag.trim() })
-          .filter((tag: string) => { return tag != ''}),
-        id: date.getTime()
-      };
-
-      this.NotesProvider.saveNote(note);
-    }
+    this.note
+      ? this.NotesProvider.updateNote(note)
+      : this.NotesProvider.saveNote(note);
 
     this.view.dismiss();
   }
-
 }
 
 // This interface is used for the form, because all the form inputs return strings.
