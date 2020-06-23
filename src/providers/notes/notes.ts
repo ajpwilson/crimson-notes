@@ -6,6 +6,7 @@ import { Storage } from "@ionic/storage";
 export class NotesProvider {
 
   notes: Note[] = [];
+  filteredTags = [];
 
   constructor(public storage: Storage) {}
 
