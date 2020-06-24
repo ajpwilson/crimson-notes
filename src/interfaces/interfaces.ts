@@ -4,3 +4,10 @@ export interface Note {
   tags: string[]
   id: number
 }
+
+export interface User {
+  name: string
+  email: string
+  password: string
+  confirm: string
+}
