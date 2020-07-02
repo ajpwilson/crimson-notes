@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar hideBackButton text-center color="secondary">
+    <ion-title>Crimson Notes Login Form</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="image-container">
+    <img class="image" src="assets/imgs/brain_explosion.gif" alt="How my brain feels">
+  </div>
+  <form novalidate (ngSubmit)="loginUser(user)" [formGroup]="user">
+    <ion-input
+      class="input"
+      type="email"
+      formControlName="email"
+      placeholder="Email"
+    ></ion-input>
+    <div class="error" *ngIf="user.get('email').hasError('required') && user.get('email').touched">
+      Email is required
+    </div>
+    <ion-input
+      class="input"
+      type="password"
+      formControlName="password"
+      placeholder="Password"
+    ></ion-input>
+    <div class="error" *ngIf="user.get('password').hasError('required') && user.get('password').touched">
+      Password is required
+    </div>
+    <ion-footer>
+      <ion-toolbar>
+        <button ion-button block class="rainbow" type="submit" [disabled]="user.invalid">Login</button>
+      </ion-toolbar>
+    </ion-footer>
+  </form>
+
+  <div class="register-container">
+    <button ion-button color="dark" block (click)="register()">Register</button>
+  </div>
+  <div class="fog-pass-container">
+    <button ion-button color="secondary" block (click)="forgottenPassword()">Forgotten Password</button>
+  </div>
+</ion-content>

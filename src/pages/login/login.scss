@@ -1,0 +1,21 @@
+page-login {
+  .image-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 40px;
+
+    .image {
+      flex: initial;
+      padding: 5px;
+      background-color: #222;
+      border-radius: 50%;
+    }
+  }
+
+  .register-container,
+  .fog-pass-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
