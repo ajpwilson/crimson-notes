@@ -23,8 +23,6 @@ export class ViewNotePage {
 
     editNoteModal.present();
 
-    editNoteModal.onDidDismiss(() => {
-      this.navCtrl.popToRoot()
-    })
+    editNoteModal.onDidDismiss(() => {})
   }
 }

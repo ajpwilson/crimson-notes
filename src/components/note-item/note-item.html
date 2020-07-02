@@ -1,6 +1,6 @@
-<ion-item-sliding class="sliding" (click)="viewNotes(note)">
+<ion-item-sliding class="sliding">
   <ion-item>
-    <h2>{{ note.title }}</h2>
+    <h2 (click)="viewNotes(note)">{{ note.title }}</h2>
     <div class="tags">
       <div class="tag" *ngFor="let tag of note.tags">{{ tag }}</div>
     </div>

@@ -5,16 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
-    <ion-input
-      class="input"
-      type="text"
-      formControlName="name"
-      placeholder="Name"
-    ></ion-input>
-    <div class="error" *ngIf="user.get('name').hasError('required') && user.get('name').touched">
-      Name is required
-    </div>
+  <form novalidate (ngSubmit)="registerUser(user)" [formGroup]="user">
     <ion-input
       class="input"
       type="email"
@@ -33,16 +24,6 @@
     <div class="error" *ngIf="user.get('password').hasError('required') && user.get('password').touched">
       Password is required
     </div>
-    <ion-input
-      class="input"
-      type="password"
-      formControlName="confirm"
-      placeholder="Confirm Password"
-    ></ion-input>
-    <div class="error" *ngIf="user.get('password').hasError('required') && user.get('password').touched">
-      Password Confirmation is required
-    </div>
-
     <ion-footer>
       <ion-toolbar>
         <button ion-button block class="rainbow" type="submit" [disabled]="user.invalid">Register</button>
